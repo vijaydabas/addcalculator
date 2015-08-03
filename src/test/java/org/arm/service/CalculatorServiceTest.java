@@ -31,4 +31,19 @@ public class CalculatorServiceTest {
 		
 	}
 	
+	
+	@Test
+	public void whenInputHasMoreThanTwoNumbers() throws Exception {
+		CalculatorService calculator = new CalculatorService();
+		assertTrue(6 == calculator.add("1,2,3"));
+		
+	}
+	
+	@Test
+	public void whenInputNewLineCharacterBetweenTwoLinesNumbers() throws Exception {
+		CalculatorService calculator = new CalculatorService();
+		assertTrue(6 == calculator.add("1 \n 2,3"));
+		
+	}
+	
 }
