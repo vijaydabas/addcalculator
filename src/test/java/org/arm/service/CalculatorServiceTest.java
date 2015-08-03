@@ -2,6 +2,7 @@ package org.arm.service;
 
 import static org.junit.Assert.assertTrue;
 
+import org.arm.exception.InvalidInputException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.BlockJUnit4ClassRunner;
@@ -60,4 +61,19 @@ public class CalculatorServiceTest {
 		
 	}
 	
+	
+	@Test
+	public void whenNegativeNumbersPassedThenThrowException() throws Exception {
+		
+		InvalidInputException exception = null;
+		CalculatorService calculator = new CalculatorService();
+		try {
+			calculator.add("//[;]\n 1 ; -2 ; 3");
+		} catch (InvalidInputException e) {
+			exception = e;
+			
+		}
+		assertTrue(exception.getMessage().contains("Invalid number : -2"));
+		
+	}
 }

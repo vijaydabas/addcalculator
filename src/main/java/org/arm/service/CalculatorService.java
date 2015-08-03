@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
+import org.arm.exception.InvalidInputException;
 
 public class CalculatorService {
 
@@ -58,11 +59,21 @@ public class CalculatorService {
 		return (String intString) -> {
 			String[] numbersArray = intString.split(delimiter);
 			
-			return  Arrays.asList(numbersArray).parallelStream().map(i ->Integer.parseInt(i.trim())).mapToInt(Integer::valueOf).sum();
+			return  Arrays.asList(numbersArray).parallelStream().map(parseInteger).mapToInt(Integer::valueOf).sum();
 			
 		};
 		
 	}
+	
+	private Function<? super String, ? extends Integer> parseInteger = str -> {
+		
+		final int inVal = Integer.parseInt(str.trim());
+		if(inVal < 0){
+			throw new InvalidInputException("Invalid number : " + inVal);
+		}
+		return inVal;
+		
+	};
 
 
 }
