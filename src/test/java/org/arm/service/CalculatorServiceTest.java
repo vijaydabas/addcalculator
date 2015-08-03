@@ -76,4 +76,11 @@ public class CalculatorServiceTest {
 		assertTrue(exception.getMessage().contains("Invalid number : -2"));
 		
 	}
+	
+	@Test
+	public void ignoreNumbersBiggerThan1000() throws Exception {
+		CalculatorService calculator = new CalculatorService();
+		assertTrue(2 == calculator.add("//[;]\n 1000 ; 2"));
+		
+	}
 }

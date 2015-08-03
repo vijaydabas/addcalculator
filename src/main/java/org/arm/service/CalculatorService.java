@@ -59,7 +59,7 @@ public class CalculatorService {
 		return (String intString) -> {
 			String[] numbersArray = intString.split(delimiter);
 			
-			return  Arrays.asList(numbersArray).parallelStream().map(parseInteger).mapToInt(Integer::valueOf).sum();
+			return  Arrays.asList(numbersArray).parallelStream().map(parseInteger).filter(i -> i < 1000).mapToInt(Integer::valueOf).sum();
 			
 		};
 		
@@ -68,12 +68,18 @@ public class CalculatorService {
 	private Function<? super String, ? extends Integer> parseInteger = str -> {
 		
 		final int inVal = Integer.parseInt(str.trim());
-		if(inVal < 0){
-			throw new InvalidInputException("Invalid number : " + inVal);
-		}
+		validateNumberGreaterThanZero(inVal);
 		return inVal;
 		
 	};
+
+	private void validateNumberGreaterThanZero(final int inVal) {
+		if(inVal < 0){
+			throw new InvalidInputException("Invalid number : " + inVal);
+		}
+	}
+	
+	
 
 
 }
