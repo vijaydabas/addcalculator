@@ -1,6 +1,7 @@
 package org.arm.service;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
@@ -14,6 +15,8 @@ public class CalculatorService {
 	private static  String DEFAULT_DELIMITER = ",";
 
 	private Pattern delimiterPattern = Pattern.compile("\\[([^\\]]*)\\]"); 
+	
+	private List<String>  regExCharacters =  Arrays.asList("*", ".","?"); //TODO expand this.
 	
 	public int add(String string) {
 		// TODO Auto-generated method stub
@@ -66,8 +69,10 @@ public class CalculatorService {
 	}
 	
 	private String escapeDelimiter(String deLimiter){
+		
+		
 		if(deLimiter.contains("*")){
-			return deLimiter.replace("*", "\\*");
+			return deLimiter.replace("*", "\\*" );
 		}
 		return deLimiter;
 	}
