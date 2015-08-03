@@ -24,4 +24,11 @@ public class CalculatorServiceTest {
 		
 	}
 	
+	@Test
+	public void whenInputHasOneAndTwoReturnSum() throws Exception {
+		CalculatorService calculator = new CalculatorService();
+		assertTrue(3 == calculator.add("1 , 2"));
+		
+	}
+	
 }
