@@ -83,4 +83,11 @@ public class CalculatorServiceTest {
 		assertTrue(2 == calculator.add("//[;]\n 1000 ; 2"));
 		
 	}
+	
+	@Test
+	public void deLimiterWithMoreThanOneCharacter() throws Exception {
+		CalculatorService calculator = new CalculatorService();
+		assertTrue(3 == calculator.add("//[**]\n 1 ** 2"));
+		
+	}
 }

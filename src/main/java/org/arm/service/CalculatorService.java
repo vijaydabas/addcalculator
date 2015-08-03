@@ -54,15 +54,22 @@ public class CalculatorService {
 
   
 	private Function<String, Integer> createParser(String delimiter) {
-		
+		String escapeDelimiter = escapeDelimiter(delimiter);
 		
 		return (String intString) -> {
-			String[] numbersArray = intString.split(delimiter);
+			String[] numbersArray = intString.split(escapeDelimiter);
 			
 			return  Arrays.asList(numbersArray).parallelStream().map(parseInteger).filter(i -> i < 1000).mapToInt(Integer::valueOf).sum();
 			
 		};
 		
+	}
+	
+	private String escapeDelimiter(String deLimiter){
+		if(deLimiter.contains("*")){
+			return deLimiter.replace("*", "\\*");
+		}
+		return deLimiter;
 	}
 	
 	private Function<? super String, ? extends Integer> parseInteger = str -> {
