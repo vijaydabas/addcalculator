@@ -46,4 +46,18 @@ public class CalculatorServiceTest {
 		
 	}
 	
+	@Test
+	public void whenInputNewLineCharacterBetweenThreeNumbers() throws Exception {
+		CalculatorService calculator = new CalculatorService();
+		assertTrue(6 == calculator.add("1 \n 2 \n 3"));
+		
+	}
+	
+	@Test
+	public void whenSpecifyNewDelimiterAsFirstLine() throws Exception {
+		CalculatorService calculator = new CalculatorService();
+		assertTrue(6 == calculator.add("//[;]\n 1 ; 2 ; 3"));
+		
+	}
+	
 }
