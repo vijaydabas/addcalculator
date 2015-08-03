@@ -17,4 +17,11 @@ public class CalculatorServiceTest {
 		
 	}
 	
+	@Test
+	public void whenOneAsStringThenReturnOne() throws Exception {
+		CalculatorService calculator = new CalculatorService();
+		assertTrue(1 == calculator.add("1"));
+		
+	}
+	
 }
